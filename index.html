@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Latihan Kata Nama Am — แบบฝึกหัดโต้ตอบ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@500;600;700&family=IBM+Plex+Sans+Thai:wght@400;500;600&family=Mali:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --latar:#E7E9F4;
+  --kertas:#FDFDFB;
+  --garis:#E4E8F1;
+  --margin:#E0625C;
+  --dakwat:#1A2340;
+  --lembut:#5C6684;
+  --nila:#3A34B0;
+  --nila-lut:#EFEEFB;
+  --kunyit:#C87F09;
+  --kunyit-lut:#FBF2DF;
+  --betul:#0F7A55;
+  --betul-lut:#E7F5EF;
+  --silap:#C7362F;
+  --silap-lut:#FBEDEC;
+  --gutter:56px;
+  --pad:22px;
+  --f-tajuk:'Bai Jamjuree','IBM Plex Sans Thai','Sarabun','Leelawadee UI',Tahoma,sans-serif;
+  --f-teks:'IBM Plex Sans Thai','Sarabun','Leelawadee UI',Tahoma,sans-serif;
+  --f-pen:'Mali','IBM Plex Sans Thai','Sarabun',cursive;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--latar);
+  background-image:radial-gradient(circle at 12% 8%, #F2F0FA 0 38%, transparent 60%),
+                   radial-gradient(circle at 88% 92%, #E1E8F6 0 40%, transparent 62%);
+  background-attachment:fixed;
+  font-family:var(--f-teks);
+  color:var(--dakwat);
+  line-height:1.62;
+  -webkit-text-size-adjust:100%;
+  padding:26px 14px 60px;
+}
+
+/* ---------- helaian kertas ---------- */
+.sheet{
+  position:relative;
+  max-width:760px;
+  margin:0 auto;
+  background:var(--kertas);
+  border-radius:4px;
+  box-shadow:0 1px 0 rgba(26,35,64,.06), 0 18px 46px -22px rgba(26,35,64,.42);
+  overflow:hidden;
+}
+.sheet::before{
+  content:"";
+  position:absolute; top:0; bottom:0; left:var(--gutter);
+  width:1.5px; background:var(--margin); opacity:.5;
+}
+.row{display:grid; grid-template-columns:var(--gutter) 1fr}
+.row>.tepi{
+  padding:18px 12px 0 0;
+  text-align:right;
+  font-family:var(--f-pen);
+  font-size:15px; font-weight:600;
+  color:var(--lembut);
+}
+.row>.isi{padding:16px var(--pad) 18px calc(var(--pad) - 6px)}
+
+/* ---------- kepala ---------- */
+.hero{border-bottom:1px solid var(--garis)}
+.hero .isi{padding-top:26px; padding-bottom:22px}
+.eyebrow{
+  font-family:var(--f-tajuk); font-weight:600; font-size:11.5px;
+  letter-spacing:.16em; text-transform:uppercase; color:var(--nila);
+  margin:0 0 8px;
+}
+h1{
+  font-family:var(--f-tajuk); font-weight:700;
+  font-size:clamp(30px,7vw,44px); line-height:1.06;
+  letter-spacing:-.015em; margin:0;
+}
+.sub{margin:6px 0 0; color:var(--lembut); font-size:15px}
+.arahan{
+  margin:18px 0 0; padding:12px 14px;
+  background:var(--nila-lut); border-radius:3px;
+  font-size:14.5px;
+}
+.arahan b{font-weight:600}
+
+/* contoh langsung */
+.contoh{margin:20px 0 0}
+.contoh__cap{
+  font-family:var(--f-tajuk); font-size:11.5px; font-weight:600;
+  letter-spacing:.14em; text-transform:uppercase; color:var(--lembut);
+  margin:0 0 6px;
+}
+.contoh .ayat{font-size:clamp(17px,4.4vw,21px)}
+.contoh__nota{
+  margin:14px 0 0; font-size:13.4px; color:var(--lembut);
+  border-left:2px solid var(--kunyit); padding-left:11px;
+}
+
+/* ---------- nota ringkas ---------- */
+.nota{border-bottom:1px solid var(--garis); background:#FBFBF7}
+details{margin:0}
+summary{
+  cursor:pointer; list-style:none;
+  font-family:var(--f-tajuk); font-weight:600; font-size:15px;
+  display:flex; align-items:center; gap:9px;
+  padding:2px 0;
+}
+summary::-webkit-details-marker{display:none}
+summary::before{
+  content:"+"; width:19px; height:19px; flex:0 0 19px;
+  display:grid; place-items:center;
+  border:1.5px solid var(--nila); color:var(--nila);
+  border-radius:50%; font-size:13px; line-height:1;
+}
+details[open] summary::before{content:"–"}
+.nota__body{padding-top:12px; font-size:14.2px}
+.jenis{display:grid; gap:8px; margin:12px 0 0; padding:0; list-style:none}
+.jenis li{display:flex; gap:10px; align-items:baseline}
+.jenis b{
+  font-family:var(--f-tajuk); font-weight:600; font-size:12.5px;
+  color:var(--nila); min-width:86px; flex:0 0 86px;
+}
+.awas{
+  margin:14px 0 0; padding:10px 12px; font-size:13.6px;
+  background:var(--silap-lut); border-radius:3px;
+}
+
+/* ---------- soalan ---------- */
+.q{border-bottom:1px solid var(--garis)}
+.q .tepi{padding-top:20px}
+.q.done .tepi::after{display:block; font-size:17px; margin-top:2px}
+.q.done.ok .tepi::after{content:"✓"; color:var(--betul)}
+.q.done.no .tepi::after{content:"✗"; color:var(--silap)}
+.q.done.rev .tepi::after{content:"→"; color:var(--nila)}
+.ayat{
+  font-size:clamp(18px,4.6vw,22px);
+  line-height:2.15;
+  font-weight:400;
+  margin:0;
+}
+
+/* ---------- perkataan + bulatan tangan ---------- */
+.word{
+  position:relative; display:inline-block;
+  font:inherit; color:inherit;
+  background:none; border:0; margin:0 1px; padding:2px 5px;
+  cursor:pointer; border-radius:3px; overflow:visible;
+  transition:background .16s, color .2s;
+  -webkit-tap-highlight-color:transparent;
+}
+.word:hover{background:#F1F1FA}
+.word:focus-visible{outline:2px solid var(--nila); outline-offset:2px}
+.word[disabled]{cursor:default}
+.word[disabled]:hover{background:none}
+.mark{
+  position:absolute; left:-7px; top:-6px;
+  width:calc(100% + 14px); height:calc(100% + 12px);
+  overflow:visible; pointer-events:none;
+}
+.mark path{fill:none; stroke-linecap:round; stroke-linejoin:round; stroke-width:2.1}
+.ring{
+  stroke:var(--nila); opacity:0;
+  stroke-dasharray:var(--len,300); stroke-dashoffset:var(--len,300);
+  transition:stroke-dashoffset .52s cubic-bezier(.25,.75,.35,1), stroke .22s, opacity .12s;
+}
+.strike{
+  stroke:var(--silap); opacity:0; stroke-width:1.9;
+  stroke-dasharray:var(--slen,120); stroke-dashoffset:var(--slen,120);
+  transition:stroke-dashoffset .34s ease-out .12s, opacity .1s .12s;
+}
+.word.on .ring{opacity:1; stroke-dashoffset:0}
+.word.correct .ring{opacity:1; stroke-dashoffset:0; stroke:var(--betul)}
+.word.correct{color:var(--betul)}
+.word.bonus .ring{opacity:1; stroke-dashoffset:0; stroke:var(--kunyit)}
+.word.bonus{color:var(--kunyit)}
+.word.wrong .ring{opacity:1; stroke-dashoffset:0; stroke:var(--silap)}
+.word.wrong .strike{opacity:1; stroke-dashoffset:0}
+.word.wrong{color:var(--silap)}
+.word.miss .ring{opacity:.95; stroke:var(--silap); stroke-dasharray:6 5; stroke-dashoffset:0}
+.word.miss{color:var(--silap)}
+.punct{margin-left:-3px}
+
+/* ---------- butang ---------- */
+.tools{display:flex; flex-wrap:wrap; gap:8px; margin:14px 0 0}
+.btn{
+  font-family:var(--f-tajuk); font-weight:600; font-size:13.5px;
+  padding:8px 15px; border-radius:2px; cursor:pointer;
+  border:1.5px solid var(--nila); background:var(--nila); color:#fff;
+  transition:transform .12s, background .16s, color .16s;
+}
+.btn:hover{background:#2E2996; border-color:#2E2996}
+.btn:active{transform:translateY(1px)}
+.btn:focus-visible{outline:2px solid var(--dakwat); outline-offset:2px}
+.btn.ghost{background:none; color:var(--nila)}
+.btn.ghost:hover{background:var(--nila-lut); color:var(--nila); border-color:var(--nila)}
+.btn.plain{border-color:#CBD2E2; color:var(--lembut); background:none}
+.btn.plain:hover{background:#F2F4F9; border-color:#B6C0D6; color:var(--dakwat)}
+.btn[disabled]{opacity:.4; pointer-events:none}
+
+/* ---------- panel semakan ---------- */
+.semak{margin:16px 0 0; border-left:2px solid var(--garis); padding-left:14px}
+.semak[hidden]{display:none}
+.verdict{
+  font-family:var(--f-pen); font-weight:600;
+  font-size:18px; margin:0 0 4px;
+}
+.verdict.ok{color:var(--betul)}
+.verdict.no{color:var(--silap)}
+.terjemah{
+  font-size:14px; color:var(--lembut); margin:0 0 12px;
+}
+.terjemah b{color:var(--dakwat); font-weight:500}
+.kunci{list-style:none; margin:0; padding:0; display:grid; gap:9px}
+.kunci li{display:grid; grid-template-columns:auto 1fr; gap:10px; align-items:start; font-size:14px}
+.tag{
+  font-family:var(--f-tajuk); font-weight:600; font-size:11px;
+  letter-spacing:.03em; padding:3px 7px; border-radius:2px; white-space:nowrap;
+  background:#EEF0F6; color:var(--lembut); margin-top:3px;
+}
+.tag.kna{background:var(--betul-lut); color:var(--betul)}
+.tag.opt{background:var(--kunyit-lut); color:var(--kunyit)}
+.kunci .kata{font-weight:600}
+.kunci .kata.kna{color:var(--betul)}
+.kunci .kata.opt{color:var(--kunyit)}
+.kunci .huraian{color:var(--lembut)}
+.petua{
+  margin:13px 0 0; font-size:13.4px; padding:9px 12px;
+  background:var(--kunyit-lut); border-radius:3px;
+}
+.petua b{font-weight:600}
+
+/* ---------- kaki ---------- */
+.kaki{background:#FBFBF7}
+.kaki .isi{padding-top:22px; padding-bottom:26px}
+.bar{height:5px; background:var(--garis); border-radius:99px; overflow:hidden; margin:0 0 14px}
+.bar span{display:block; height:100%; width:0; background:var(--nila); transition:width .4s ease}
+.skor{font-family:var(--f-tajuk); font-size:15px; font-weight:600; margin:0}
+.skor em{font-style:normal; color:var(--lembut); font-weight:500}
+.mesej{margin:8px 0 0; font-family:var(--f-pen); font-size:17px; color:var(--nila)}
+.mesej[hidden]{display:none}
+.legend{
+  display:flex; flex-wrap:wrap; gap:14px; margin:18px 0 0;
+  font-size:12.5px; color:var(--lembut);
+}
+.legend i{display:inline-block; width:13px; height:13px; border-radius:50%; border:2px solid; margin-right:5px; vertical-align:-2px}
+.legend .l1 i{border-color:var(--betul)}
+.legend .l2 i{border-color:var(--silap)}
+.legend .l3 i{border-color:var(--silap); border-style:dashed}
+.legend .l4 i{border-color:var(--kunyit)}
+
+@media (max-width:560px){
+  :root{--gutter:38px; --pad:16px}
+  body{padding:14px 8px 40px}
+  .ayat{line-height:2.25}
+}
+@media (prefers-reduced-motion:reduce){
+  .ring,.strike,.bar span,.btn{transition:none}
+}
+@media print{
+  body{background:#fff; padding:0}
+  .sheet{box-shadow:none; max-width:none}
+  .tools,.bar{display:none}
+  .semak{display:block!important}
+  .q{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+
+<div class="sheet" id="sheet">
+
+  <header class="hero row">
+    <div class="tepi"></div>
+    <div class="isi">
+      <p class="eyebrow">Kertas Latihan · Tatabahasa Melayu</p>
+      <h1>Kata Nama Am</h1>
+      <p class="sub">คำนามทั่วไป — แบบฝึกหัดโต้ตอบ พร้อมเฉลยและคำอธิบายเหตุผล</p>
+
+      <div class="arahan">
+        <b>Arahan:</b> Bulatkan <b>semua</b> kata nama am dalam setiap ayat.<br>
+        <b>คำชี้แจง:</b> แตะ/คลิกคำที่เป็น <b>คำนามทั่วไปทุกคำ</b> ในแต่ละประโยค แล้วกดปุ่ม “ตรวจคำตอบ”
+      </div>
+
+      <div class="contoh">
+        <p class="contoh__cap">Contoh · ตัวอย่าง</p>
+        <p class="ayat" id="demo"></p>
+        <p class="contoh__nota">
+          ใบงานต้นฉบับวงเฉพาะคำว่า <b>Guru</b> (ประธานของประโยค) แต่ <b>kelas</b> ก็เป็นคำนามทั่วไปเช่นกัน
+          แบบฝึกหัดชุดนี้จึงกำหนดให้วง <b>ทุกคำ</b> ที่เป็นคำนามทั่วไป
+        </p>
+      </div>
+    </div>
+  </header>
+
+  <section class="nota row">
+    <div class="tepi">?</div>
+    <div class="isi">
+      <details>
+        <summary>Nota ringkas — คำนามทั่วไปคืออะไร</summary>
+        <div class="nota__body">
+          <p style="margin:0"><b>Kata nama am</b> คือคำที่ใช้เรียก คน สัตว์ สิ่งของ สถานที่ หรือสิ่งที่จับต้องไม่ได้ <b>โดยทั่วไป ไม่เจาะจงชื่อ</b>
+          ต่างจาก <b>kata nama khas</b> (คำนามเฉพาะ) เช่น <i>Ali, Yala, Malaysia</i> ซึ่งเป็นชื่อเฉพาะเจาะจง</p>
+          <ul class="jenis">
+            <li><b>Manusia</b><span>คน — guru, murid, doktor, petani, ibu, adik</span></li>
+            <li><b>Binatang</b><span>สัตว์ — kucing, burung, ikan, ayam</span></li>
+            <li><b>Benda</b><span>สิ่งของ — buku, kereta, kerusi, susu</span></li>
+            <li><b>Tempat</b><span>สถานที่ — pasar, hospital, taman, pejabat</span></li>
+          </ul>
+          <p class="awas"><b>ข้อควรระวัง</b> — <i>saya, kami, dia, mereka</i> เป็น <b>kata ganti nama diri</b> (คำสรรพนาม)
+          ใช้ <i>แทน</i> คำนาม จึง <b>ไม่ใช่</b> kata nama am · ส่วน <i>di, ke, dari</i> เป็นคำบุพบท และ <i>itu, ini</i> เป็นคำชี้เฉพาะ</p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <main id="list"></main>
+
+  <footer class="kaki row">
+    <div class="tepi"></div>
+    <div class="isi">
+      <div class="bar"><span id="bar"></span></div>
+      <p class="skor" id="skor"></p>
+      <p class="mesej" id="mesej" hidden></p>
+      <div class="tools">
+        <button class="btn" id="allCheck">ตรวจทั้งหมด</button>
+        <button class="btn ghost" id="allShow">เฉลยทั้งหมด</button>
+        <button class="btn plain" id="allReset">เริ่มใหม่</button>
+      </div>
+      <div class="legend">
+        <span class="l1"><i></i>วงถูก</span>
+        <span class="l2"><i></i>วงผิด (ขีดฆ่า)</span>
+        <span class="l3"><i></i>ตกหล่น (เส้นประ)</span>
+        <span class="l4"><i></i>ยอมรับได้ ไม่บังคับ</span>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+/* ============ ข้อมูลแบบฝึกหัด ============ */
+const T = {
+  KNA:["Kata Nama Am","kna"],
+  KNW:["Kata Nama Am (waktu)","opt"],
+  KA :["Kata Arah","opt"],
+  KK :["Kata Kerja",""],
+  KSN:["Kata Sendi Nama",""],
+  KGN:["Kata Ganti Nama Diri",""],
+  KH :["Kata Hubung",""],
+  KP :["Kata Penentu",""],
+  KB :["Kata Bilangan",""]
+};
+
+const DATA = [
+{ no:1, wajib:[0,2,4], bonus:[],
+  ayat:["Murid","membaca","buku","di","perpustakaan"],
+  th:"นักเรียนอ่านหนังสือในห้องสมุด",
+  nota:[
+    ["Murid","KNA","คน — “นักเรียน” เรียกคนโดยทั่วไป ไม่ระบุชื่อ"],
+    ["membaca","KK","คำกริยา “อ่าน” (mem- + baca)"],
+    ["buku","KNA","สิ่งของ — “หนังสือ”"],
+    ["di","KSN","คำบุพบท “ที่ / ใน” บอกตำแหน่ง"],
+    ["perpustakaan","KNA","สถานที่ — “ห้องสมุด” (per- + pustaka + -an แปลงเป็นคำนาม)"]
+  ],
+  petua:"<b>Murid</b> เขียนตัวใหญ่เพราะอยู่ต้นประโยค ไม่ได้แปลว่าเป็นชื่อเฉพาะ" },
+
+{ no:2, wajib:[0,2,4], bonus:[],
+  ayat:["Ayah","memandu","kereta","ke","pejabat"],
+  th:"พ่อขับรถไปที่ทำงาน",
+  nota:[
+    ["Ayah","KNA","คน — “พ่อ” คำเรียกเครือญาติ ใช้ได้กับพ่อของทุกคน จึงเป็นคำนามทั่วไป"],
+    ["memandu","KK","คำกริยา “ขับ (ยานพาหนะ)”"],
+    ["kereta","KNA","สิ่งของ — “รถยนต์”"],
+    ["ke","KSN","คำบุพบท “ไปยัง” บอกจุดหมาย"],
+    ["pejabat","KNA","สถานที่ — “สำนักงาน / ที่ทำงาน”"]
+  ],
+  petua:"เทียบให้เห็นชัด — <b>Ayah</b> = คำนามทั่วไป แต่ <b>Encik Rahman</b> = kata nama khas (ชื่อเฉพาะ)" },
+
+{ no:3, wajib:[0,5], bonus:[4],
+  ayat:["Kucing","itu","tidur","di","atas","kerusi"],
+  th:"แมวตัวนั้นนอนอยู่บนเก้าอี้",
+  nota:[
+    ["Kucing","KNA","สัตว์ — “แมว”"],
+    ["itu","KP","คำชี้เฉพาะ “นั้น” ทำหน้าที่ขยายคำนาม ไม่ใช่ตัวคำนามเอง"],
+    ["tidur","KK","คำกริยา “นอน”"],
+    ["di","KSN","คำบุพบท “ที่ / ใน”"],
+    ["atas","KA","“บน” เป็นคำบอกทิศ/ตำแหน่ง คู่กับ di เป็นวลีบุพบท <b>di atas</b> — ตำราบางเล่มจัด kata arah ไว้ใต้กลุ่มคำนาม แบบฝึกหัดนี้จึงยอมรับ แต่ไม่บังคับให้วง"],
+    ["kerusi","KNA","สิ่งของ — “เก้าอี้”"]
+  ],
+  petua:"<b>itu</b> กับ <b>ini</b> ใช้ชี้เฉพาะเจาะจง แต่ไม่ทำให้คำข้างหน้ากลายเป็นคำนามเฉพาะ — <i>kucing itu</i> ยังคงเป็นคำนามทั่วไป" },
+
+{ no:4, wajib:[2,4], bonus:[],
+  ayat:["Kami","makan","nasi","dan","ikan"],
+  th:"พวกเรากินข้าวและปลา",
+  nota:[
+    ["Kami","KGN","“พวกเรา” เป็นคำสรรพนามบุรุษที่ 1 ใช้ <i>แทน</i> คำนาม จึง <b>ไม่ใช่</b> kata nama am"],
+    ["makan","KK","คำกริยา “กิน”"],
+    ["nasi","KNA","สิ่งของ/อาหาร — “ข้าวสวย”"],
+    ["dan","KH","คำสันธาน “และ” เชื่อมคำสองคำ"],
+    ["ikan","KNA","สัตว์ (ในที่นี้คืออาหาร) — “ปลา”"]
+  ],
+  petua:"ข้อนี้เป็นกับดักสำคัญ — <b>saya, kami, kita, dia, mereka</b> ล้วนเป็นคำสรรพนาม ไม่ใช่คำนามทั่วไป" },
+
+{ no:5, wajib:[0,2,4], bonus:[],
+  ayat:["Doktor","memeriksa","pesakit","di","hospital"],
+  th:"หมอตรวจคนไข้ที่โรงพยาบาล",
+  nota:[
+    ["Doktor","KNA","คน — “หมอ” ชื่ออาชีพเป็นคำนามทั่วไป"],
+    ["memeriksa","KK","คำกริยา “ตรวจ” (me- + periksa)"],
+    ["pesakit","KNA","คน — “ผู้ป่วย / คนไข้” (pe- + sakit แปลงคำคุณศัพท์เป็นคำนาม)"],
+    ["di","KSN","คำบุพบท “ที่ / ใน”"],
+    ["hospital","KNA","สถานที่ — “โรงพยาบาล”"]
+  ],
+  petua:"อุปสรรค <b>pe-</b> สร้างคำนามที่หมายถึง “ผู้ที่...” เช่น <i>sakit → pesakit</i>, <i>tani → petani</i>, <i>lari → pelari</i>" },
+
+{ no:6, wajib:[0,3], bonus:[],
+  ayat:["Kanak-kanak","bermain","di","taman"],
+  th:"เด็ก ๆ เล่นในสวน",
+  nota:[
+    ["Kanak-kanak","KNA","คน — “เด็ก ๆ” เป็นคำนามทั่วไปในรูป <b>kata ganda</b> (คำซ้ำ) นับเป็นหนึ่งคำ"],
+    ["bermain","KK","คำกริยา “เล่น” (ber- + main)"],
+    ["di","KSN","คำบุพบท “ที่ / ใน”"],
+    ["taman","KNA","สถานที่ — “สวน / สวนสาธารณะ”"]
+  ],
+  petua:"คำนามทั่วไปอาจอยู่ในรูปคำซ้ำได้ เช่น <i>kanak-kanak, buku-buku, murid-murid</i>" },
+
+{ no:7, wajib:[0,2,4], bonus:[],
+  ayat:["Ibu","membeli","sayur","di","pasar"],
+  th:"แม่ซื้อผักที่ตลาด",
+  nota:[
+    ["Ibu","KNA","คน — “แม่” คำเรียกเครือญาติ"],
+    ["membeli","KK","คำกริยา “ซื้อ” (mem- + beli)"],
+    ["sayur","KNA","สิ่งของ/พืช — “ผัก”"],
+    ["di","KSN","คำบุพบท “ที่ / ใน”"],
+    ["pasar","KNA","สถานที่ — “ตลาด”"]
+  ],
+  petua:"โครงประโยคเดียวกับข้อ 1 และ 5 คือ <b>ประธาน + กริยา + กรรม + วลีบุพบท</b> — คำนามมักอยู่ต้นประโยค หลังกริยา และหลังคำบุพบท" },
+
+{ no:8, wajib:[0,3], bonus:[],
+  ayat:["Burung","terbang","di","langit"],
+  th:"นกบินอยู่บนท้องฟ้า",
+  nota:[
+    ["Burung","KNA","สัตว์ — “นก”"],
+    ["terbang","KK","คำกริยา “บิน” — คำกริยาบางคำไม่ต้องเติมอุปสรรค me-"],
+    ["di","KSN","คำบุพบท “ที่ / บน”"],
+    ["langit","KNA","สิ่งของตามธรรมชาติ — “ท้องฟ้า”"]
+  ],
+  petua:"คำกริยาไม่จำเป็นต้องมี <b>me-</b> เสมอไป เช่น <i>tidur, makan, minum, terbang</i>" },
+
+{ no:9, wajib:[0,2], bonus:[],
+  ayat:["Petani","menanam","padi"],
+  th:"ชาวนาปลูกข้าว",
+  nota:[
+    ["Petani","KNA","คน — “ชาวนา / เกษตรกร” (pe- + tani)"],
+    ["menanam","KK","คำกริยา “ปลูก” (me- + tanam)"],
+    ["padi","KNA","พืช — “ต้นข้าว / ข้าวเปลือก”"]
+  ],
+  petua:"คำศัพท์ที่ควรแยกให้ออก — <b>padi</b> ข้าวในนา · <b>beras</b> ข้าวสาร · <b>nasi</b> ข้าวสวยที่หุงแล้ว" },
+
+{ no:10, wajib:[0,2], bonus:[4],
+  ayat:["Adik","minum","susu","setiap","pagi"],
+  th:"น้องดื่มนมทุกเช้า",
+  nota:[
+    ["Adik","KNA","คน — “น้อง” คำเรียกเครือญาติ"],
+    ["minum","KK","คำกริยา “ดื่ม”"],
+    ["susu","KNA","สิ่งของ/อาหาร — “นม”"],
+    ["setiap","KB","คำบอกจำนวน “ทุก ๆ” ขยายคำที่ตามมา"],
+    ["pagi","KNW","“เช้า” เป็นคำนามบอกเวลา ในประโยคนี้ทำหน้าที่ขยายบอกเวลา — ยอมรับได้ถ้าวง แต่ไม่บังคับ"]
+  ],
+  petua:"คำบอกเวลาอย่าง <i>pagi, petang, malam</i> เป็นคำนาม แต่เมื่อรวมกับ <i>setiap</i> จะทำหน้าที่บอกเวลาให้กริยา" }
+];
+
+/* ============ ปากกาวาดมือ ============ */
+function ringPath(w,h,seed){
+  const cx=w/2, cy=h/2;
+  const rx=Math.max(w/2-2.5,7), ry=Math.max(h/2-2.5,8);
+  const p1=(seed%7)*0.9, p2=(seed%5)*1.3;
+  const start=(-152+(seed%9)*2)*Math.PI/180;
+  const sweep=(388+(seed%11)*4)*Math.PI/180;
+  const N=26, pts=[];
+  for(let i=0;i<=N;i++){
+    const t=i/N, a=start+sweep*t;
+    const wob=1+0.045*Math.sin(a*2+p1)+0.028*Math.sin(a*3.4+p2);
+    const lift=1-0.055*Math.max(0,(t-0.88)/0.12);
+    pts.push([cx+Math.cos(a)*rx*wob*lift, cy+Math.sin(a)*ry*wob*lift]);
+  }
+  let d="M "+pts[0][0].toFixed(1)+" "+pts[0][1].toFixed(1);
+  for(let i=1;i<pts.length-1;i++){
+    const mx=(pts[i][0]+pts[i+1][0])/2, my=(pts[i][1]+pts[i+1][1])/2;
+    d+=" Q "+pts[i][0].toFixed(1)+" "+pts[i][1].toFixed(1)+" "+mx.toFixed(1)+" "+my.toFixed(1);
+  }
+  const L=pts[pts.length-1];
+  d+=" L "+L[0].toFixed(1)+" "+L[1].toFixed(1);
+  return d;
+}
+function strikePath(w,h,seed){
+  const y=h*0.54, N=8; let d="";
+  for(let i=0;i<=N;i++){
+    const t=i/N, x=6+(w-12)*t;
+    const yy=y+Math.sin(t*Math.PI*1.6+(seed%5))*1.6-t*1.2;
+    d+=(i?" L ":"M ")+x.toFixed(1)+" "+yy.toFixed(1);
+  }
+  return d;
+}
+
+let SEED=1;
+function makeWord(text, idx){
+  const b=document.createElement("button");
+  b.type="button"; b.className="word"; b.dataset.i=idx;
+  b.dataset.seed=(SEED=(SEED*37+91)%9973);
+  b.innerHTML='<span class="t"></span>'+
+    '<svg class="mark" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">'+
+    '<path class="ring"></path><path class="strike"></path></svg>';
+  b.querySelector(".t").textContent=text;
+  b.setAttribute("aria-pressed","false");
+  b.setAttribute("aria-label",text);
+  return b;
+}
+function paint(b){
+  const svg=b.querySelector(".mark");
+  const r=svg.getBoundingClientRect();
+  const w=Math.max(r.width,14), h=Math.max(r.height,16);
+  svg.setAttribute("viewBox","0 0 "+w.toFixed(1)+" "+h.toFixed(1));
+  const s=+b.dataset.seed;
+  const ring=svg.querySelector(".ring"), st=svg.querySelector(".strike");
+  ring.setAttribute("d",ringPath(w,h,s));
+  st.setAttribute("d",strikePath(w,h,s));
+  b.style.setProperty("--len",Math.ceil(ring.getTotalLength()));
+  b.style.setProperty("--slen",Math.ceil(st.getTotalLength()));
+}
+function paintAll(){document.querySelectorAll(".word").forEach(paint);}
+
+/* ============ สร้างข้อสอบ ============ */
+const list=document.getElementById("list");
+const state=DATA.map(()=>({checked:false,ok:false}));
+
+DATA.forEach((q,qi)=>{
+  const sec=document.createElement("section");
+  sec.className="q row"; sec.id="q"+q.no;
+  sec.innerHTML='<div class="tepi">'+q.no+'</div><div class="isi"></div>';
+  const isi=sec.querySelector(".isi");
+
+  const p=document.createElement("p"); p.className="ayat";
+  q.ayat.forEach((w,i)=>{
+    p.appendChild(makeWord(w,i));
+    if(i<q.ayat.length-1) p.appendChild(document.createTextNode(" "));
+  });
+  const dot=document.createElement("span"); dot.className="punct"; dot.textContent=".";
+  p.appendChild(dot);
+  isi.appendChild(p);
+
+  const tools=document.createElement("div"); tools.className="tools";
+  tools.innerHTML='<button class="btn act-check">ตรวจคำตอบ</button>'+
+    '<button class="btn plain act-clear">ล้างคำตอบ</button>';
+  isi.appendChild(tools);
+
+  const panel=document.createElement("div");
+  panel.className="semak"; panel.hidden=true;
+  isi.appendChild(panel);
+
+  p.addEventListener("click",e=>{
+    const b=e.target.closest(".word"); if(!b||b.disabled) return;
+    const on=b.classList.toggle("on");
+    b.setAttribute("aria-pressed",on?"true":"false");
+  });
+
+  tools.querySelector(".act-check").addEventListener("click",()=>check(qi));
+  tools.querySelector(".act-clear").addEventListener("click",()=>reset(qi));
+  list.appendChild(sec);
+});
+
+function words(qi){return list.children[qi].querySelectorAll(".word");}
+
+function check(qi,reveal){
+  const q=DATA[qi], ws=words(qi);
+  let ok=true;
+  ws.forEach((b,i)=>{
+    const picked=reveal? q.wajib.includes(i) : b.classList.contains("on");
+    b.classList.remove("on","correct","wrong","miss","bonus");
+    if(q.wajib.includes(i)){
+      b.classList.add(picked?"correct":"miss");
+      if(!picked) ok=false;
+    }else if(q.bonus.includes(i)){
+      if(picked) b.classList.add("bonus");
+    }else if(picked){
+      b.classList.add("wrong"); ok=false;
+    }
+    b.disabled=true;
+  });
+  const sec=list.children[qi];
+  sec.classList.add("done");
+  sec.classList.remove("ok","no","rev");
+  sec.classList.add(reveal ? "rev" : (ok ? "ok" : "no"));
+  sec.querySelector(".act-check").disabled=true;
+  sec.querySelector(".act-clear").textContent="ทำข้อนี้ใหม่";
+
+  const panel=sec.querySelector(".semak");
+  panel.innerHTML=
+    '<p class="verdict '+(reveal?"":(ok?"ok":"no"))+'">'+(reveal?"Jawapan · เฉลย":(ok?"Betul! ครบถ้วนถูกต้อง":"Belum tepat — ดูเหตุผลด้านล่าง"))+'</p>'+
+    '<p class="terjemah">'+q.ayat.join(" ")+'. <b>'+q.th+'</b></p>'+
+    '<ul class="kunci">'+q.nota.map(n=>{
+      const t=T[n[1]], cls=t[1];
+      return '<li><span class="tag '+cls+'">'+t[0]+'</span>'+
+             '<span><span class="kata '+cls+'">'+n[0]+'</span> — <span class="huraian">'+n[2]+'</span></span></li>';
+    }).join("")+'</ul>'+
+    (q.petua?'<p class="petua"><b>Petua · เคล็ดลับ:</b> '+q.petua+'</p>':'');
+  panel.hidden=false;
+
+  state[qi]={checked:true, ok:(reveal?false:ok), revealed:!!reveal};
+  tally();
+  requestAnimationFrame(paintAll);
+}
+
+function reset(qi){
+  const sec=list.children[qi];
+  words(qi).forEach(b=>{
+    b.classList.remove("on","correct","wrong","miss","bonus");
+    b.disabled=false; b.setAttribute("aria-pressed","false");
+  });
+  sec.classList.remove("done","ok","no","rev");
+  sec.querySelector(".act-check").disabled=false;
+  sec.querySelector(".act-clear").textContent="ล้างคำตอบ";
+  const panel=sec.querySelector(".semak"); panel.hidden=true; panel.innerHTML="";
+  state[qi]={checked:false,ok:false};
+  tally();
+}
+
+const TOTAL=DATA.reduce((s,q)=>s+q.wajib.length,0);
+function tally(){
+  const done=state.filter(s=>s.checked).length;
+  const ok=state.filter(s=>s.ok).length;
+  let found=0;
+  DATA.forEach((q,i)=>{ if(state[i].checked && !state[i].revealed)
+    words(i).forEach(b=>{ if(b.classList.contains("correct")) found++; });
+  });
+  document.getElementById("bar").style.width=(done/DATA.length*100)+"%";
+  document.getElementById("skor").innerHTML=
+    "ตรวจแล้ว "+done+"/"+DATA.length+" ข้อ <em>·</em> ถูกครบทั้งข้อ <b>"+ok+"</b> ข้อ <em>·</em> วงคำนามถูก <b>"+found+"</b>/"+TOTAL+" คำ";
+  const m=document.getElementById("mesej");
+  if(done===DATA.length){
+    m.hidden=false;
+    m.textContent = ok===10 ? "Cemerlang! เยี่ยมมาก แม่นหลักการแล้ว"
+      : ok>=7 ? "Bagus! ทำได้ดี ทบทวนข้อที่พลาดอีกนิดเดียว"
+      : ok>=4 ? "Boleh lagi! ลองอ่านโน้ตด้านบนแล้วทำใหม่อีกรอบ"
+      : "Jangan putus asa! เริ่มจากโน้ตด้านบน แล้วค่อย ๆ ไล่ทีละข้อ";
+  }else m.hidden=true;
+}
+
+document.getElementById("allCheck").addEventListener("click",()=>{
+  DATA.forEach((q,i)=>{ if(!state[i].checked) check(i); });
+});
+document.getElementById("allShow").addEventListener("click",()=>{
+  DATA.forEach((q,i)=>{ if(state[i].checked) reset(i); check(i,true); });
+});
+document.getElementById("allReset").addEventListener("click",()=>{
+  DATA.forEach((q,i)=>reset(i));
+  window.scrollTo({top:0,behavior:"smooth"});
+});
+
+/* ============ ตัวอย่างหัวกระดาษ ============ */
+const demo=document.getElementById("demo");
+["Guru","sedang","mengajar","di","kelas"].forEach((w,i)=>{
+  const b=makeWord(w,i); b.disabled=true; b.dataset.demo=(i===0||i===4)?"1":"";
+  demo.appendChild(b);
+  if(i<4) demo.appendChild(document.createTextNode(" "));
+});
+const d=document.createElement("span"); d.className="punct"; d.textContent="."; demo.appendChild(d);
+
+/* ============ เริ่มทำงาน ============ */
+function boot(){
+  paintAll();
+  const reduce=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const marks=[...demo.querySelectorAll('[data-demo="1"]')];
+  marks.forEach((b,i)=>{
+    const go=()=>b.classList.add("correct");
+    reduce ? go() : setTimeout(go, 500+i*620);
+  });
+}
+if(document.fonts && document.fonts.ready) document.fonts.ready.then(boot);
+else window.addEventListener("load",boot);
+
+let rt;
+window.addEventListener("resize",()=>{clearTimeout(rt); rt=setTimeout(paintAll,140);});
+tally();
+</script>
+</body>
+</html>
